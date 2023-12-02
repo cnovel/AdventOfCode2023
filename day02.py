@@ -26,3 +26,6 @@ class Day02(Day):
 
       print("Day 02 - Star 1:", sum_a)
       print("Day 02 - Star 2:", sum_b)
+
+if __name__ == "__main__":
+   Day02("data/input_02.txt").run()

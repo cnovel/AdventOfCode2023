@@ -31,3 +31,6 @@ class Day01(Day):
          sum += number
       print("Day 01 - Star 2:", sum)
 
+
+if __name__ == "__main__":
+   Day01("data/input_01.txt").run()
