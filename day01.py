@@ -3,6 +3,12 @@ import regex as re
 from day_processing import Day
 
 class Day01(Day):
+   def _name(self):
+      return "--- Day 1: Trebuchet?! ---"
+
+   def _file(self):
+      return "data/input_01.txt"
+
    def _process(self):
       r_a = re.compile("([0-9])")
       r_b = re.compile("(one|two|three|four|five|six|seven|eight|nine|zero|[0-9])")
@@ -32,4 +38,4 @@ class Day01(Day):
 
 
 if __name__ == "__main__":
-   Day01("data/input_01.txt").run()
+   Day01().run()

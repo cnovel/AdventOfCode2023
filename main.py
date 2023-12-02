@@ -3,8 +3,7 @@ from day01 import Day01
 from day02 import Day02
 
 
-days = [Day01("data/input_01.txt"),
-        Day02("data/input_02.txt")]
+days = [Day01(), Day02()]
 
 s = time.perf_counter()
 for d in days:

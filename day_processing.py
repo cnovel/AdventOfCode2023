@@ -3,16 +3,24 @@ from abc import ABC, abstractmethod
 
 
 class Day(ABC):
-    def __init__(self, in_path: str) -> None:
-        with open(in_path, 'r') as f:
+    def __init__(self) -> None:
+        with open(self._file(), 'r') as f:
             self.lines = f.readlines()
     
     @abstractmethod
     def _process(self):
         pass
 
+    @abstractmethod
+    def _name(self):
+        pass
+
+    @abstractmethod
+    def _file(self):
+        pass
+
     def run(self):
-        print(type(self).__name__ + ":")
+        print(self._name())
         s = time.perf_counter()
         self._process()
         e = time.perf_counter()

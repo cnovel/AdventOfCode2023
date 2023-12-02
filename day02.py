@@ -2,6 +2,12 @@ import re
 from day_processing import Day
 
 class Day02(Day):
+   def _name(self):
+      return "--- Day 2: Cube Conundrum ---"
+
+   def _file(self):
+      return "data/input_02.txt"
+
    def _process(self):
       sum_a = 0
       sum_b = 0
@@ -28,4 +34,4 @@ class Day02(Day):
       print("Day 02 - Star 2:", sum_b)
 
 if __name__ == "__main__":
-   Day02("data/input_02.txt").run()
+   Day02().run()
