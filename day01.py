@@ -10,8 +10,8 @@ class Day01(Day):
       return "data/input_01.txt"
 
    def _process(self):
-      r_a = re.compile("([0-9])")
-      r_b = re.compile("(one|two|three|four|five|six|seven|eight|nine|zero|[0-9])")
+      r_a = re.compile("(\d)")
+      r_b = re.compile("(one|two|three|four|five|six|seven|eight|nine|zero|\d)")
 
       transfo = {"zero": "0", "one": "1", "two": "2", "three": "3",
                               "four": "4", "five": "5", "six": "6", "seven": "7",

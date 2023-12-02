@@ -15,10 +15,10 @@ class Day02(Day):
       max_green = 13
       max_blue = 14
 
-      rg_game_id = re.compile("Game ([0-9]+):")
-      rg_red = re.compile("([0-9]+) red")
-      rg_green = re.compile("([0-9]+) green")
-      rg_blue = re.compile("([0-9]+) blue")
+      rg_game_id = re.compile("Game (\d+):")
+      rg_red = re.compile("(\d+) red")
+      rg_green = re.compile("(\d+) green")
+      rg_blue = re.compile("(\d+) blue")
 
       for l in self.lines:
          game_id = int(rg_game_id.findall(l)[0])
