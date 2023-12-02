@@ -15,27 +15,10 @@ rg_blue = re.compile("([0-9]+) blue")
 with open("data/input_02.txt", 'r') as d:
    for l in d.readlines():
       game_id = int(rg_game_id.findall(l)[0])
-      draws = [d.strip() for d in l.split(":")[1].strip().split(";")]
-      possible = True
-      red = 0
-      green = 0
-      blue = 0
-      for draw in draws:
-         m = [int(s) for s in rg_red.findall(draw)]
-         if m and m[0] > max_red:
-            possible = False
-         if m:
-            red = max(red, m[0])
-         m = [int(s) for s in rg_green.findall(draw)]
-         if m and m[0] > max_green:
-            possible = False
-         if m:
-            green = max(green, m[0])
-         m = [int(s) for s in rg_blue.findall(draw)]
-         if m and m[0] > max_blue:
-            possible = False
-         if m:
-            blue = max(blue, m[0])
+      red = max([int(s) for s in rg_red.findall(l)] + [0])
+      green = max([int(s) for s in rg_green.findall(l)] + [0])
+      blue = max([int(s) for s in rg_blue.findall(l)] + [0])
+      possible = red <= max_red and blue <= max_blue and green <= max_green
       if possible:
          sum_a += game_id
       sum_b += red*green*blue
