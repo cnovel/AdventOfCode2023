@@ -20,9 +20,9 @@ with open("data/input_01.txt", 'r') as d:
          line = l[i:len(l)]
          if line[0] in digits:
             line_digits.append(line[0])
-         for k in digits_word_to_digits.keys():
-            if line.startswith(k):
-               line_digits.append(digits_word_to_digits[k])
+         word = [digits_word_to_digits[k] for k in digits_word_to_digits.keys() if line.startswith(k)]
+         if word:
+            line_digits.append(word[0])
 
       number_str = line_digits[0] + line_digits[-1]
       number = int(number_str)
