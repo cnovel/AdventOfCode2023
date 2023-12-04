@@ -11,30 +11,21 @@ class Day04(Day):
    def _process(self):
       sum_a = 0
       
-      numbers_and_sep_rg = re.compile("(\d+|\|)")
+      numbers_rg = re.compile("(\d+)")
       card_id_to_number_of_card = {}
       for i in range(0, len(self.lines)):
          card_id_to_number_of_card[i+1] = 1
 
       for l in self.lines:
-         hits = numbers_and_sep_rg.findall(l)
-         after_sep = False
-         winning_nb = set()
-         count = 0
-         cid = int(hits[0])
-         for n in hits[1:]:
-            if n == "|":
-               after_sep = True
-               continue
-            if not after_sep:
-               winning_nb.add(int(n))
-            elif int(n) in winning_nb:
-               count += 1
+         split = l.split("|")
+         cid_and_winning_nb = [int(n) for n in numbers_rg.findall(split[0])]
+         winning_nb = set(cid_and_winning_nb[1:])
+         cid = cid_and_winning_nb[0]
+         count = len([n for n in numbers_rg.findall(split[1]) if int(n) in winning_nb])
          if count > 0:
             sum_a += pow(2, count - 1)
-         nb_c = card_id_to_number_of_card[cid]
          for next_card_id in range(cid + 1, cid + 1 + count):
-            card_id_to_number_of_card[next_card_id] += nb_c
+            card_id_to_number_of_card[next_card_id] += card_id_to_number_of_card[cid]
 
       print("Day 04 - Star 1:", sum_a)
       print("Day 04 - Star 2:", sum(card_id_to_number_of_card.values()))
