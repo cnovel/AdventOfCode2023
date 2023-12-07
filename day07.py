@@ -81,16 +81,12 @@ class Day07(Day):
 
    def _process(self):
       hands = sorted([Hand(l) for l in self.lines])
-      res = 0
-      for i in range(len(hands)):
-         res += (i+1)*hands[i].bid
-      print("Day 06 - Star 1:", res)
+      res = sum([(i+1)*hands[i].bid for i in range(len(hands))])
+      print("Day 07 - Star 1:", res)
 
       hands = sorted([JokerHand(l) for l in self.lines])
-      res = 0
-      for i in range(len(hands)):
-         res += (i+1)*hands[i].bid
-      print("Day 06 - Star 2:", res)
+      res = sum([(i+1)*hands[i].bid for i in range(len(hands))])
+      print("Day 07 - Star 2:", res)
 
 if __name__ == "__main__":
    Day07().run()
