@@ -29,15 +29,32 @@ class Day08(Day):
 
       cur_pos = [pos for pos in carte.keys() if pos.endswith('A')]
       steps_by_pos = []
+      ends = []
       for p in cur_pos:
          steps = 0
          while not p.endswith("Z"):
             i = steps % len(instructions)
             p = carte[p][instructions[i]]
             steps +=1
+         ends.append(p)
          steps_by_pos.append(steps)
 
       print("Day 08 - Star 2", int(reduce(lambda x, y: ppcm(x, y), steps_by_pos)))
+
+      # Check solution is right
+      """
+      steps_by_cycle = []
+      for p in ends:
+         steps = 0
+         s = p
+         while steps == 0 or not p.endswith("Z"):
+            i = steps % len(instructions)
+            p = carte[p][instructions[i]]
+            steps +=1
+         steps_by_cycle.append(steps)
+      if steps_by_pos != steps_by_pos:
+         print("Solution is false!")
+      """
 
 
 if __name__ == "__main__":
