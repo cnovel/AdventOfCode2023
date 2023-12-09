@@ -20,15 +20,10 @@ class Day09(Day):
         sum_b = 0
         for l in self.lines:
             nums = [int(n) for n in l.strip().split(" ")]
-            temp = []
+            nums.reverse()
             while set(nums) != {0}:
-                temp.append(nums[0])
+                sum_b += nums[-1]
                 nums = [nums[i] - nums[i-1] for i in range(1, len(nums))]
-            temp.append(0)
-            t = 0
-            for i in reversed(temp):
-                t = -t + i
-            sum_b += t
         print("Day 09 - Star 2:", sum_b)
 
 
