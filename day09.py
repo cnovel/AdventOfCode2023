@@ -19,8 +19,7 @@ class Day09(Day):
 
         sum_b = 0
         for l in self.lines:
-            nums = [int(n) for n in l.strip().split(" ")]
-            nums.reverse()
+            nums = [int(n) for n in reversed(l.strip().split(" "))]
             while set(nums) != {0}:
                 sum_b += nums[-1]
                 nums = [nums[i] - nums[i-1] for i in range(1, len(nums))]
