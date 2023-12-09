@@ -7,9 +7,10 @@ from day05 import Day05
 from day06 import Day06
 from day07 import Day07
 from day08 import Day08
+from day09 import Day09
 
 
-days = [Day01(), Day02(), Day03(), Day04(), Day05(), Day06(), Day07(), Day08()]
+days = [Day01(), Day02(), Day03(), Day04(), Day05(), Day06(), Day07(), Day08(), Day09()]
 
 s = time.perf_counter()
 for d in days:
