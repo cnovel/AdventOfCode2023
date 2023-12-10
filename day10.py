@@ -1,12 +1,6 @@
 from day_processing import Day
 
 
-def decimal_range(start, stop, increment):
-    while start < stop:
-        yield start
-        start += increment
-
-
 class Day10(Day):
     def _name(self):
         return "--- Day 10: Pipe Maze ---"
@@ -34,9 +28,7 @@ class Day10(Day):
             return "7"
         if connect == {"R", "U"}:
             return "L"
-        if connect == {"R", "D"}:
-            return "F"
-        print("Fuck")
+        return "F"
 
     def _possible_next_pipes(self, x, y):
         nexts = []
@@ -84,7 +76,6 @@ class Day10(Day):
             loop.append(n)
         print("Day 10 - Star 1:", int(len(loop) / 2))
 
-
         # Get S equivalent
         s_eq = self._get_s_eq(s_pos[0], s_pos[1])
         self.lines[s_pos[1]].replace("S", s_eq)
@@ -93,23 +84,20 @@ class Day10(Day):
         loop = set(loop)
         for j in range(len(self.lines)):
             inside = False
-            on_pipe = False
             start = ""
             for i in range(len(self.lines[-1])):
                 if (i,j) not in loop:
                     inside_tiles += 1 if inside else 0
                     continue
                 c = self.lines[j][i]
-                if c in {"F", "L"} and not on_pipe:
-                    on_pipe = True
+                if c in {"F", "L"}:
                     start = c
                     continue
-                if c in {"7", "J"} and on_pipe:
+                if c in {"7", "J"}:
                     if start == "F" and c == "J":
                         inside = not inside
                     if start == "L" and c == "7":
                         inside = not inside
-                    on_pipe = False
                     continue
                 if c == "|":
                     inside = not inside
