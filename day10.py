@@ -64,6 +64,7 @@ class Day10(Day):
                 if self.lines[j][i] != "S":
                     continue
                 s_pos = (i,j)
+                break
 
         loop = []
         loop.append(s_pos)
