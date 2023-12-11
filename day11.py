@@ -4,7 +4,8 @@ import math
 
 
 def man_dist(g, h):
-    return math.fabs(h[0]-g[0]) + math.fabs(h[1]-g[1])
+    return math.fabs(h[0] - g[0]) + math.fabs(h[1] - g[1])
+
 
 class Day11(Day):
     def _name(self):
@@ -14,7 +15,6 @@ class Day11(Day):
         return "data/input_11.txt"
 
     def _get_sum_distances(self, offset):
-        offset_y = 0
         set_x = set()
         rg_sharp = re.compile("(#)")
         galaxies = []
@@ -29,17 +29,16 @@ class Day11(Day):
                 set_x.add(m.start(0))
             offset_y += 1
         empty_cols = set([x for x in range(len(self.lines[-1])) if x not in set_x])
-        galaxies = [(g[0] + (offset-1)*len([x for x in empty_cols if x < g[0]]), g[1]) for g in galaxies]
+        galaxies = [(g[0] + (offset - 1) * len([x for x in empty_cols if x < g[0]]), g[1]) for g in galaxies]
         star = 0
         for i in range(len(galaxies)):
-            for j in range(i+1, len(galaxies)):
+            for j in range(i + 1, len(galaxies)):
                 star += man_dist(galaxies[i], galaxies[j])
         return int(star)
 
     def _process(self):
         print("Day 10 - Star 1:", self._get_sum_distances(2))
         print("Day 10 - Star 2:", self._get_sum_distances(1000000))
-
 
 
 if __name__ == "__main__":

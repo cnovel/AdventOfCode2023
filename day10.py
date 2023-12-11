@@ -63,12 +63,10 @@ class Day10(Day):
             for i in range(len(self.lines[-1])):
                 if self.lines[j][i] != "S":
                     continue
-                s_pos = (i,j)
+                s_pos = (i, j)
                 break
 
-        loop = []
-        loop.append(s_pos)
-        loop.append(self._possible_next_pipes(s_pos[0], s_pos[1])[0])
+        loop = [s_pos, self._possible_next_pipes(s_pos[0], s_pos[1])[0]]
         while True:
             nexts = self._possible_next_pipes(loop[-1][0], loop[-1][1])
             n = nexts[0] if nexts[1] == loop[-2] else nexts[1]
@@ -86,25 +84,29 @@ class Day10(Day):
         for j in range(len(self.lines)):
             inside = False
             start = ""
+            on_pipe = False
             for i in range(len(self.lines[-1])):
-                if (i,j) not in loop:
+                if (i, j) not in loop:
                     inside_tiles += 1 if inside else 0
                     continue
                 c = self.lines[j][i]
-                if c in {"F", "L"}:
+                if c in {"F", "L"} and not on_pipe:
                     start = c
+                    on_pipe = True
                     continue
-                if c in {"7", "J"}:
+                if c in {"7", "J"} and on_pipe:
                     if start == "F" and c == "J":
                         inside = not inside
                     if start == "L" and c == "7":
                         inside = not inside
+                    on_pipe = False
                     continue
                 if c == "|":
                     inside = not inside
                     continue
 
         print("Day 10 - Star 2:", inside_tiles)
+
 
 if __name__ == "__main__":
     Day10().run()
