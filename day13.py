@@ -1,5 +1,5 @@
 from day_processing import Day
-import re
+import multiprocessing
 
 
 class Pattern:
@@ -62,6 +62,13 @@ class Pattern:
         return 0
 
 
+def compute_score(p):
+    return p.score()
+
+
+def compute_smudge(p):
+    return p.get_smudge_score()
+
 
 class Day13(Day):
     def _name(self):
@@ -81,8 +88,10 @@ class Day13(Day):
             else:
                 lines.append(l)
         patterns.append(Pattern(lines))
-        print("Day 13 - Star 1:", sum([p.score() for p in patterns]))
-        print("Day 13 - Star 2:", sum([p.get_smudge_score() for p in patterns]))
+
+        pool = multiprocessing.Pool(4)
+        print("Day 13 - Star 1:", sum(pool.map(compute_score, patterns)))
+        print("Day 13 - Star 2:", sum(pool.map(compute_smudge, patterns)))
 
 
 if __name__ == "__main__":
