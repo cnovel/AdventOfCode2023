@@ -82,14 +82,8 @@ class Day13(Day):
             else:
                 lines.append(l)
         patterns.append(Pattern(lines))
-        star_a = 0
-        for p in patterns:
-            star_a += p.score()
-        print("Day 13 - Star 1:", star_a)
-        star_b = 0
-        for p in patterns:
-            star_b += p.get_smudge_score()
-        print("Day 13 - Star 2:", star_b)
+        print("Day 13 - Star 1:", sum([p.score() for p in patterns]))
+        print("Day 13 - Star 2:", sum([p.get_smudge_score() for p in patterns]))
 
 
 if __name__ == "__main__":
