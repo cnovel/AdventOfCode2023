@@ -3,7 +3,7 @@ import re
 
 
 class Pattern:
-    def __init__(self, lines, v_axis_to_remove = [], h_axis_to_remove = []) -> None:
+    def __init__(self, lines, v_axis_to_remove = set(), h_axis_to_remove = set()) -> None:
         self.lines = lines.copy()
         self.v_axis = v_axis_to_remove
         self.h_axis = h_axis_to_remove
@@ -12,8 +12,7 @@ class Pattern:
 
     def get_vertical_axis(self):
         possible_axis = set([i for i in range(len(self.lines[0]))])
-        for v in self.v_axis:
-            possible_axis.remove(v)
+        possible_axis -= self.v_axis
         for line in self.lines:
             for i in [x for x in range(len(line)) if x in possible_axis]:
                 a = line[0:i][::-1]
@@ -48,8 +47,8 @@ class Pattern:
         return s
 
     def get_smudge_score(self):
-        h_axis = list(self.get_horizontal_axis())
-        v_axis = list(self.get_vertical_axis())
+        h_axis = self.get_horizontal_axis()
+        v_axis = self.get_vertical_axis()
         for j in range(len(self.lines)):
             for i in range(len(self.lines[0])):
                 new_lines = self.lines.copy()
