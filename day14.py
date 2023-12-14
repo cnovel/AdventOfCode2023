@@ -100,10 +100,7 @@ class Day14(Day):
                 size_cycle = i - start_cycle
                 break
             known_configs_to_cycle[fb] = i
-            s = 0
-            for b in fb:
-                s += len(self.lines) - b[1]
-            cycle_to_load[i] = s
+            cycle_to_load[i] = sum([len(self.lines) - b[1] for b in fb])
 
         idx = ((1000000000 - start_cycle) % size_cycle) + start_cycle
         print("Day 14 - Star 2:", cycle_to_load[idx])
