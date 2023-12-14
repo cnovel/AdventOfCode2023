@@ -92,7 +92,8 @@ class Day14(Day):
         cycle_to_load = {}
         start_cycle = -1
         size_cycle = -1
-        for i in range(1,1000000001):
+        nb_cycle = 1000000000
+        for i in range(1,nb_cycle + 1):
             boulders = self._cycle(boulders, stoppers)
             fb = frozenset(boulders)
             if fb in known_configs_to_cycle.keys():
@@ -102,7 +103,7 @@ class Day14(Day):
             known_configs_to_cycle[fb] = i
             cycle_to_load[i] = sum([len(self.lines) - b[1] for b in fb])
 
-        idx = ((1000000000 - start_cycle) % size_cycle) + start_cycle
+        idx = ((nb_cycle - start_cycle) % size_cycle) + start_cycle
         print("Day 14 - Star 2:", cycle_to_load[idx])
 
 
