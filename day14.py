@@ -76,7 +76,7 @@ class Day14(Day):
                     star_a += len(self.lines) - tops[i]
                     tops[i] += 1
                     continue
-        print("Day 13 - Star 1:", star_a)
+        print("Day 14 - Star 1:", star_a)
 
         boulders = set()
         stoppers = set()

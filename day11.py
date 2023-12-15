@@ -37,8 +37,8 @@ class Day11(Day):
         return int(star)
 
     def _process(self):
-        print("Day 10 - Star 1:", self._get_sum_distances(2))
-        print("Day 10 - Star 2:", self._get_sum_distances(1000000))
+        print("Day 11 - Star 1:", self._get_sum_distances(2))
+        print("Day 11 - Star 2:", self._get_sum_distances(1000000))
 
 
 if __name__ == "__main__":
