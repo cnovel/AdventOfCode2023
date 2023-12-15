@@ -3,7 +3,11 @@ import multiprocessing
 
 
 class Pattern:
-    def __init__(self, lines, v_axis_to_remove = set(), h_axis_to_remove = set()) -> None:
+    def __init__(self, lines, v_axis_to_remove=None, h_axis_to_remove=None) -> None:
+        if h_axis_to_remove is None:
+            h_axis_to_remove = set()
+        if v_axis_to_remove is None:
+            v_axis_to_remove = set()
         self.lines = lines.copy()
         self.v_axis = v_axis_to_remove
         self.h_axis = h_axis_to_remove
@@ -40,7 +44,7 @@ class Pattern:
     def score(self):
         s = 0
         for a in self.get_horizontal_axis():
-            s += 100*a
+            s += 100 * a
         for a in self.get_vertical_axis():
             s += a
         self.score_a = s
@@ -80,13 +84,13 @@ class Day13(Day):
     def _process(self):
         patterns = []
         lines = []
-        for l in self.lines:
-            l = l.strip("\n")
-            if len(l) == 0:
+        for line in self.lines:
+            line = line.strip("\n")
+            if len(line) == 0:
                 patterns.append(Pattern(lines))
                 lines.clear()
             else:
-                lines.append(l)
+                lines.append(line)
         patterns.append(Pattern(lines))
 
         pool = multiprocessing.Pool(4)

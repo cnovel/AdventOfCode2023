@@ -15,7 +15,7 @@ class Day14(Day):
         new_boulders = set()
         for j in range(len(self.lines)):
             for i in range(len(self.lines[-1])):
-                if (i,j) in stoppers:
+                if (i, j) in stoppers:
                     tops[i] = j + 1
                     continue
                 if (i, j) in b:
@@ -28,7 +28,7 @@ class Day14(Day):
         for j in range(len(self.lines)):
             left = 0
             for i in range(len(self.lines[-1])):
-                if (i,j) in stoppers:
+                if (i, j) in stoppers:
                     left = i + 1
                     continue
                 if (i, j) in b:
@@ -54,7 +54,7 @@ class Day14(Day):
         for j in range(len(self.lines)):
             right = len(self.lines[-1]) - 1
             for i in range(len(self.lines[-1]) - 1, -1, -1):
-                if (i,j) in stoppers:
+                if (i, j) in stoppers:
                     right = i - 1
                     continue
                 if (i, j) in b:
@@ -83,17 +83,17 @@ class Day14(Day):
         for j in range(len(self.lines)):
             for i in range(len(self.lines[-1])):
                 if self.lines[j][i] == '#':
-                    stoppers.add((i,j))
+                    stoppers.add((i, j))
                     continue
                 if self.lines[j][i] == 'O':
-                    boulders.add((i,j))
+                    boulders.add((i, j))
                     continue
         known_configs_to_cycle = {}
         cycle_to_load = {}
         start_cycle = -1
         size_cycle = -1
         nb_cycle = 1000000000
-        for i in range(1,nb_cycle + 1):
+        for i in range(1, nb_cycle + 1):
             boulders = self._cycle(boulders, stoppers)
             fb = frozenset(boulders)
             if fb in known_configs_to_cycle.keys():
