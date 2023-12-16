@@ -80,11 +80,9 @@ class Day16(Day):
     def _process(self):
         print("Day 16 - Star 1:", self._get_score((0, 0, ">")))
         best = 0
-        """
         for i in range(len(self.lines[-1])):
             best = max(best, self._get_score((i, 0, "v")))
             best = max(best, self._get_score((i, len(self.lines) - 1, "^")))
-        """
         for j in range(len(self.lines)):
             best = max(best, self._get_score((0, j, ">")))
             best = max(best, self._get_score((len(self.lines[-1]) - 1, j, "<")))
