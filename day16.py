@@ -1,6 +1,5 @@
 from day_processing import Day
-from queue import Queue
-
+from collections import deque
 
 class Day16(Day):
     def _name(self):
@@ -66,24 +65,26 @@ class Day16(Day):
 
     def _get_score(self, start_pos):
         visited = set()
-        next_positions = Queue()
-        next_positions.put(start_pos)
-        while not next_positions.empty():
-            np = next_positions.get()
+        next_positions = deque()
+        next_positions.append(start_pos)
+        while len(next_positions) > 0:
+            np = next_positions.pop()
             if np in visited:
                 continue  # We found a cycle
             visited.add(np)
             c = self.lines[np[1]][np[0]]
             for n in self._get_next_pos(np, c):
-                next_positions.put(n)
+                next_positions.append(n)
         return len(set([(np[0], np[1]) for np in visited]))
 
     def _process(self):
         print("Day 16 - Star 1:", self._get_score((0, 0, ">")))
         best = 0
+        """
         for i in range(len(self.lines[-1])):
             best = max(best, self._get_score((i, 0, "v")))
             best = max(best, self._get_score((i, len(self.lines) - 1, "^")))
+        """
         for j in range(len(self.lines)):
             best = max(best, self._get_score((0, j, ">")))
             best = max(best, self._get_score((len(self.lines[-1]) - 1, j, "<")))
