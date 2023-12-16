@@ -65,17 +65,17 @@ class Day16(Day):
 
     def _get_score(self, start_pos):
         visited = set()
-        next_positions = deque()
-        next_positions.append(start_pos)
-        while len(next_positions) > 0:
+        pos = set()
+        next_positions = deque([start_pos])
+        while next_positions:
             np = next_positions.pop()
             if np in visited:
                 continue  # We found a cycle
             visited.add(np)
+            pos.add((np[0], np[1]))
             c = self.lines[np[1]][np[0]]
-            for n in self._get_next_pos(np, c):
-                next_positions.append(n)
-        return len(set([(np[0], np[1]) for np in visited]))
+            next_positions.extend(self._get_next_pos(np, c))
+        return len(pos)
 
     def _process(self):
         print("Day 16 - Star 1:", self._get_score((0, 0, ">")))
