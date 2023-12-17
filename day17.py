@@ -39,7 +39,7 @@ class Day17(Day):
             if new_direction_moves > max_moves  :
                 continue
 
-            # Min move condition if ultra
+            # Min move condition before turning if ultra
             if min_moves and new_dir != dir and nb_moves < min_moves:
                 continue
 
