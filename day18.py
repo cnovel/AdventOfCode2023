@@ -144,18 +144,18 @@ class Day18(Day):
                 if ct % 2 == 0:
                     continue
                 area += dx * dy
-        print(area)
+        return area
 
     def _process(self):
         rg = re.compile(r"([RDLU]) (\d+) \(#(.+)\)")
         instructions = [rg.findall(line)[0] for line in self.lines]
-        self.get_area(instructions)
+        print("Day 18 - Star 1:", self.get_area(instructions))
         new_instructions = []
         for i in instructions:
             ldir = get_letter(int(i[2][-1]))
             moves = int(i[2][:5], 16)
             new_instructions.append((ldir, moves))
-        self.get_area(new_instructions)
+        print("Day 18 - Star 2:", self.get_area(new_instructions))
 
 
 if __name__ == "__main__":
