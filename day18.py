@@ -12,36 +12,6 @@ def get_dir(c: str):
     return 0, -1
 
 
-def get_symbol(c: str):
-    if c == "R" or c == "L":
-        return "-"
-    return "|"
-
-
-def get_turn(c: str, cn: str):
-    if c == "R" and cn == "D":
-        return "7"
-    if c == "R" and cn == "U":
-        return "J"
-    if c == "L" and cn == "U":
-        return "L"
-    if c == "L" and cn == "D":
-        return "F"
-    if c == "D" and cn == "R":
-        return "L"
-    if c == "D" and cn == "L":
-        return "J"
-    if c == "U" and cn == "R":
-        return "F"
-    if c == "U" and cn == "L":
-        return "7"
-    if c == cn and (c == "R" or c == "L"):
-        return "-"
-    if c == cn and (c == "U" or c == "D"):
-        return "|"
-    return None
-
-
 def get_letter(c: int):
     if c == 0:
         return "R"
@@ -62,7 +32,7 @@ def in_hori(s, mid_x):
 
 class Day18(Day):
     def _name(self):
-        return "--- Day 18: Clumsy Crucible ---"
+        return "--- Day 18: Lavaduct Lagoon ---"
 
     def _file(self):
         return "data/input_18.txt"
