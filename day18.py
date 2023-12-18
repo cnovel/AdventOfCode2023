@@ -1,6 +1,5 @@
 from day_processing import Day
 import re
-from collections import Counter
 
 
 def get_dir(c: str):
@@ -150,12 +149,8 @@ class Day18(Day):
         rg = re.compile(r"([RDLU]) (\d+) \(#(.+)\)")
         instructions = [rg.findall(line)[0] for line in self.lines]
         print("Day 18 - Star 1:", self.get_area(instructions))
-        new_instructions = []
-        for i in instructions:
-            ldir = get_letter(int(i[2][-1]))
-            moves = int(i[2][:5], 16)
-            new_instructions.append((ldir, moves))
-        print("Day 18 - Star 2:", self.get_area(new_instructions))
+        print("Day 18 - Star 2:", self.get_area([(get_letter(int(i[2][-1])), int(i[2][:5], 16))
+                                                 for i in instructions]))
 
 
 if __name__ == "__main__":
