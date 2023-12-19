@@ -84,7 +84,7 @@ class Day19(Day):
                         break
             if k == "A":
                 s += sum(p)
-        print("Day 19 - Star 1:", s)
+        self.prnt_a(s)
 
         part = ["in", (1, 4000), (1, 4000), (1, 4000), (1, 4000)]
         q = collections.deque()
@@ -105,7 +105,7 @@ class Day19(Day):
                 if pr is not None:
                     q.append(pr)
                 part = pl
-        print("Day 19 - Star 2:", s)
+        self.prnt_b(s)
 
 
 if __name__ == "__main__":

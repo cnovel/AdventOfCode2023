@@ -20,6 +20,14 @@ class Day(ABC):
     def _file(self):
         pass
 
+    @staticmethod
+    def prnt_a(s):
+        print(f"{Fore.LIGHTWHITE_EX}Star 1{Fore.RESET}: {s}")
+
+    @staticmethod
+    def prnt_b(s):
+        print(f"{Fore.LIGHTYELLOW_EX}Star 2{Fore.RESET}: {s}")
+
     def run(self):
         print(f"{Fore.RED}{self._name()}{Fore.RESET}")
         s = time.perf_counter()
