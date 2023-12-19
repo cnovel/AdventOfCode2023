@@ -1,5 +1,6 @@
 import time
 from abc import ABC, abstractmethod
+from colorama import Fore
 
 
 class Day(ABC):
@@ -20,9 +21,9 @@ class Day(ABC):
         pass
 
     def run(self):
-        print(self._name())
+        print(f"{Fore.RED}{self._name()}{Fore.RESET}")
         s = time.perf_counter()
         self._process()
         e = time.perf_counter()
-        print(f"Took {e - s:0.4f} seconds")
-        print("-------------------------------")
+        print(f"Took {Fore.LIGHTGREEN_EX}{e - s:0.3f}{Fore.RESET} seconds")
+        print(f"{Fore.LIGHTBLACK_EX}-------------------------------{Fore.RESET}")

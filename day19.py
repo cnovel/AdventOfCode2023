@@ -77,8 +77,7 @@ class Day19(Day):
         for p in parts:
             k = "in"
             while k not in ['A', 'R']:
-                rule = rules[k]
-                for r in rule:
+                for r in rules[k]:
                     ok, nk = get_next(p, r)
                     if ok:
                         k = nk

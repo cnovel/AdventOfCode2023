@@ -1,6 +1,7 @@
 from day_processing import Day
 from collections import deque
 
+
 class Day16(Day):
     def _name(self):
         return "--- Day 16: The Floor Will Be Lava ---"
