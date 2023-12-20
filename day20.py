@@ -13,7 +13,7 @@ class Broadcaster:
         self.followers = followers
         self.name = name
 
-    def get_signals(self, signal, from_name):
+    def get_signals(self, signal, _):
         return [(self.name, x, signal) for x in self.followers]
 
 
@@ -23,7 +23,7 @@ class FlipFlop:
         self.followers = followers
         self.name = name
 
-    def get_signals(self, signal, from_name):
+    def get_signals(self, signal, _):
         if signal == HIGH_PULSE:
             return []
         self.is_on = not self.is_on
@@ -86,7 +86,7 @@ class Day20(Day):
 
     def _process(self):
         nodes, _ = self._get_nodes()
-        c = collections.Counter()
+        c = collections.Counter({LOW_PULSE: 0, HIGH_PULSE: 0})
         for _ in range(1000):
             q = collections.deque()
             q.append(("button", "broadcaster", LOW_PULSE))
