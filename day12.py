@@ -18,8 +18,8 @@ class Day12(Day):
         return all([c == "?" or c == "#" for c in pattern[start_pattern:start_pattern+corruption_size]])
 
     def _count_patterns(self, pattern, start_pattern, rules, rule_id):
-        if (''.join(pattern[start_pattern:]), rule_id) in self.remember:
-            return self.remember[(''.join(pattern[start_pattern:]), rule_id)]
+        if (pattern[start_pattern:], rule_id) in self.remember:
+            return self.remember[(pattern[start_pattern:], rule_id)]
         r = 0
         for i in range(start_pattern, len(pattern)):
             if pattern[i] in ["#", "?"] and self._can_be_valid(pattern, i, rules[rule_id]):
@@ -35,7 +35,7 @@ class Day12(Day):
                     r += self._count_patterns(next_pattern, i + rules[rule_id] + 1, rules, rule_id + 1)
             if pattern[i] == "#":
                 break  # Rules are broken for this branch, since it cannot be valid
-        self.remember[(''.join(pattern[start_pattern:]), rule_id)] = r
+        self.remember[(pattern[start_pattern:], rule_id)] = r
         return r
 
     def _process(self):
