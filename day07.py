@@ -81,13 +81,13 @@ class Day07(Day):
         return "data/input_07.txt"
 
     def _process(self):
-        hands = sorted([Hand(l) for l in self.lines])
+        hands = sorted([Hand(line) for line in self.lines])
         res = sum([(i + 1) * hands[i].bid for i in range(len(hands))])
-        print("Day 07 - Star 1:", res)
+        self.prnt_a(res)
 
-        hands = sorted([JokerHand(l) for l in self.lines])
+        hands = sorted([JokerHand(line) for line in self.lines])
         res = sum([(i + 1) * hands[i].bid for i in range(len(hands))])
-        print("Day 07 - Star 2:", res)
+        self.prnt_b(res)
 
 
 if __name__ == "__main__":

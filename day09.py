@@ -10,20 +10,20 @@ class Day09(Day):
 
     def _process(self):
         sum_a = 0
-        for l in self.lines:
-            nums = [int(n) for n in l.strip().split(" ")]
+        for line in self.lines:
+            nums = [int(n) for n in line.strip().split(" ")]
             while set(nums) != {0}:
                 sum_a += nums[-1]
                 nums = [nums[i] - nums[i-1] for i in range(1, len(nums))]
-        print("Day 09 - Star 1:", sum_a)
+        self.prnt_a(sum_a)
 
         sum_b = 0
-        for l in self.lines:
-            nums = [int(n) for n in reversed(l.strip().split(" "))]
+        for line in self.lines:
+            nums = [int(n) for n in reversed(line.strip().split(" "))]
             while set(nums) != {0}:
                 sum_b += nums[-1]
                 nums = [nums[i] - nums[i-1] for i in range(1, len(nums))]
-        print("Day 09 - Star 2:", sum_b)
+        self.prnt_b(sum_b)
 
 
 if __name__ == "__main__":

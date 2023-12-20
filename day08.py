@@ -25,7 +25,7 @@ class Day08(Day):
             i = steps % len(instructions)
             cur_pos = carte[cur_pos][instructions[i]]
             steps += 1
-        print("Day 08 - Star 1", steps)
+        self.prnt_a(steps)
 
         cur_pos = [pos for pos in carte.keys() if pos.endswith('A')]
         steps_by_pos = []
@@ -39,7 +39,7 @@ class Day08(Day):
             ends.append(p)
             steps_by_pos.append(steps)
 
-        print("Day 08 - Star 2", int(reduce(lambda x, y: ppcm(x, y), steps_by_pos)))
+        self.prnt_b(int(reduce(lambda x, y: ppcm(x, y), steps_by_pos)))
 
         # Check solution is right
         """

@@ -73,7 +73,7 @@ class Day10(Day):
             if n == s_pos:
                 break
             loop.append(n)
-        print("Day 10 - Star 1:", int(len(loop) / 2))
+        self.prnt_a(int(len(loop) / 2))
 
         # Get S equivalent
         s_eq = self._get_s_eq(s_pos[0], s_pos[1])
@@ -105,7 +105,7 @@ class Day10(Day):
                     inside = not inside
                     continue
 
-        print("Day 10 - Star 2:", inside_tiles)
+        self.prnt_b(inside_tiles)
 
 
 if __name__ == "__main__":
