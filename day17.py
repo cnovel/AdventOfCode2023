@@ -74,10 +74,9 @@ class Day17(Day):
 
         return min([c for ((y, x, _dir, _moves), c) in dist.items() if (x, y) == end])
 
-
     def _process(self):
-        print("Day 17 - Star 1:", self.dijkstra(False))
-        print("Day 17 - Star 2:", self.dijkstra(True))
+        self.prnt_a(self.dijkstra(False))
+        self.prnt_b(self.dijkstra(True))
 
 
 if __name__ == "__main__":

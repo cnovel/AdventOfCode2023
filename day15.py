@@ -21,7 +21,7 @@ class Day15(Day):
         words = []
         for line in self.lines:
             words += line.split(",")
-        print("Day 15 - Star 1:", sum(hash_w(w) for w in words))
+        self.prnt_a(sum(hash_w(w) for w in words))
 
         box = [[] for _ in range(256)]
         for w in words:
@@ -46,8 +46,7 @@ class Day15(Day):
                 if not inside:
                     new_box.append((label, lens))
                 box[box_id] = new_box
-        print("Day 15 - Star 2:", sum((i + 1) * (j + 1) * box[i][j][1]
-                                      for i in range(len(box)) for j in range(len(box[i]))))
+        self.prnt_b(sum((i + 1) * (j + 1) * box[i][j][1] for i in range(len(box)) for j in range(len(box[i]))))
 
 
 if __name__ == "__main__":

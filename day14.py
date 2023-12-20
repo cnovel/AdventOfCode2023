@@ -76,7 +76,7 @@ class Day14(Day):
                     star_a += len(self.lines) - tops[i]
                     tops[i] += 1
                     continue
-        print("Day 14 - Star 1:", star_a)
+        self.prnt_a(star_a)
 
         boulders = set()
         stoppers = set()
@@ -104,7 +104,7 @@ class Day14(Day):
             cycle_to_load[i] = sum([len(self.lines) - b[1] for b in fb])
 
         idx = ((nb_cycle - start_cycle) % size_cycle) + start_cycle
-        print("Day 14 - Star 2:", cycle_to_load[idx])
+        self.prnt_b(cycle_to_load[idx])
 
 
 if __name__ == "__main__":

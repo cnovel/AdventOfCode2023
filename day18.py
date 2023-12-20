@@ -84,9 +84,8 @@ class Day18(Day):
     def _process(self):
         rg = re.compile(r"([RDLU]) (\d+) \(#(.+)\)")
         instructions = [rg.findall(line)[0] for line in self.lines]
-        print("Day 18 - Star 1:", self.get_area_smart(instructions))
-        print("Day 18 - Star 2:", self.get_area_smart([(get_letter(int(i[2][-1])), int(i[2][:5], 16))
-                                                       for i in instructions]))
+        self.prnt_a(self.get_area_smart(instructions))
+        self.prnt_b(self.get_area_smart([(get_letter(int(i[2][-1])), int(i[2][:5], 16)) for i in instructions]))
 
 
 if __name__ == "__main__":
