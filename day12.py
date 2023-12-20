@@ -1,6 +1,5 @@
 from day_processing import Day
 import re
-import queue
 
 
 class Day12(Day):
@@ -15,14 +14,14 @@ class Day12(Day):
         if start_pattern + corruption_size > len(pattern):
             return False  # Can't overflow!
         # Can't have a . in the middle of the rule
-        return all([c == "?" or c == "#" for c in pattern[start_pattern:start_pattern+corruption_size]])
+        return all([c in "?#" for c in pattern[start_pattern:start_pattern+corruption_size]])
 
     def _count_patterns(self, pattern, start_pattern, rules, rule_id):
         if (pattern[start_pattern:], rule_id) in self.remember:
             return self.remember[(pattern[start_pattern:], rule_id)]
         r = 0
         for i in range(start_pattern, len(pattern)):
-            if pattern[i] in ["#", "?"] and self._can_be_valid(pattern, i, rules[rule_id]):
+            if pattern[i] in "#?" and self._can_be_valid(pattern, i, rules[rule_id]):
                 if rule_id == len(rules) - 1:  # Last rule, valid if we can fill with .
                     r += 1 if all([c in '.?' for c in pattern[i + rules[rule_id]:]]) else 0
                 elif i + rules[rule_id] + 1 < len(pattern) and pattern[i + rules[rule_id]] != "#":
