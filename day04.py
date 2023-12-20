@@ -28,8 +28,8 @@ class Day04(Day):
             for next_card_id in range(cid + 1, cid + 1 + count):
                 card_id_to_number_of_card[next_card_id] += card_id_to_number_of_card[cid]
 
-        print("Day 04 - Star 1:", sum_a)
-        print("Day 04 - Star 2:", sum(card_id_to_number_of_card.values()))
+        self.prnt_a(sum_a)
+        self.prnt_b(sum(card_id_to_number_of_card.values()))
 
 
 if __name__ == "__main__":

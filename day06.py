@@ -17,7 +17,7 @@ class Day06(Day):
         star_a = 1
         for td in zip(times, distances):
             star_a *= len([i for i in range(0, td[0] + 1) if i * (td[0] - i) > td[1]])
-        print("Day 06 - Star 1:", star_a)
+        self.prnt_a(star_a)
 
         time = int(''.join([n for n in numbers_rg.findall(self.lines[0])]))
         dist = int(''.join([n for n in numbers_rg.findall(self.lines[1])]))
@@ -28,7 +28,7 @@ class Day06(Day):
         # x = 0.5*(time +- sqrt(D))
         min_x = int(0.5 * (time - sqrt(time * time - 4 * dist)) + 0.5)
         max_x = int(0.5 * (sqrt(time * time - 4 * dist) + time) + 1.5)
-        print("Day 06 - Star 2:", max_x - min_x)
+        self.prnt_b(max_x - min_x)
 
 
 if __name__ == "__main__":

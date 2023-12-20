@@ -71,7 +71,7 @@ class Day05(Day):
             for i in range(0, len(seeds)):
                 seeds[i] = tm.transform(seeds[i])
 
-        print("Day 05 - Star 1:", min(seeds))
+        self.prnt_a(min(seeds))
 
         seeds = [int(n) for n in numbers_rg.findall(self.lines[0])]
         segments = [(seeds[i], seeds[i] + seeds[i + 1]) for i in range(0, len(seeds), 2)]
@@ -79,7 +79,7 @@ class Day05(Day):
             segments = tm.transform_segments(segments)
         segments.sort(key=lambda a: a[0])
 
-        print("Day 05 - Star 2:", segments[0][0])
+        self.prnt_b(segments[0][0])
 
 
 if __name__ == "__main__":

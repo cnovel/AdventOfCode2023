@@ -31,8 +31,8 @@ class Day02(Day):
                 sum_a += game_id
             sum_b += red * green * blue
 
-        print("Day 02 - Star 1:", sum_a)
-        print("Day 02 - Star 2:", sum_b)
+        self.prnt_a(sum_a)
+        self.prnt_b(sum_b)
 
 
 if __name__ == "__main__":

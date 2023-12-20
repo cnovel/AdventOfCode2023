@@ -53,8 +53,8 @@ class Day03(Day):
             if len(neighs) == 2:
                 sum_b += neighs[0] * neighs[1]
 
-        print("Day 03 - Star 1:", sum_a)
-        print("Day 03 - Star 2:", sum_b)
+        self.prnt_a(sum_a)
+        self.prnt_b(sum_b)
 
 
 if __name__ == "__main__":

@@ -34,8 +34,8 @@ class Day01(Day):
             nb = int(nb_str)
             sum_b += nb
 
-        print("Day 01 - Star 1:", sum_a)
-        print("Day 01 - Star 2:", sum_b)
+        self.prnt_a(sum_a)
+        self.prnt_b(sum_b)
 
 
 if __name__ == "__main__":
