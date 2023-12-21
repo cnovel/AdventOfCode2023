@@ -9,7 +9,7 @@ NORTH = (0, -1)
 
 class Day21(Day):
     def _name(self):
-        return "--- Day 21: ??? ---"
+        return "--- Day 21: Step Counter ---"
 
     def _file(self):
         return "data/input_21.txt"
