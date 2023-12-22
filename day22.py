@@ -54,15 +54,12 @@ class Day22(Day):
         brick_being_solo_support = set(list(v)[0] for v in is_supported_by.values() if len(v) == 1)
         self.prnt_a(len(bricks) - len(brick_being_solo_support))
 
-        isb_list = {k: list(v) for k, v in is_supported_by.items()}
-
-        dump = json.dumps(isb_list)
+        dump = json.dumps({k: list(v) for k, v in is_supported_by.items()})
         star_b = 0
         for b_id in range(len(bricks)):
             q = deque()
             q.append(b_id)
-            support_list = json.loads(dump)
-            support = {k: set(v) for k, v in support_list.items()}
+            support = {k: set(v) for k, v in json.loads(dump).items()}
             visited = set()
             while q:
                 new_b_id = q.pop()
