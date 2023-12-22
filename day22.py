@@ -2,6 +2,7 @@ import re
 from day_processing import Day
 from collections import deque
 import copy
+import json
 
 
 class Brick:
@@ -50,17 +51,18 @@ class Day22(Day):
                     for z in range(final_z, final_z + (brick.coords[5] - brick.coords[2]) + 1):
                         occupancy[(x, y, z)] = b_id
 
-        brick_being_solo_support = set()
-        for k, v in is_supported_by.items():
-            if len(v) == 1:
-                brick_being_solo_support.update(v)
+        brick_being_solo_support = set(list(v)[0] for v in is_supported_by.values() if len(v) == 1)
         self.prnt_a(len(bricks) - len(brick_being_solo_support))
 
+        isb_list = {k: list(v) for k, v in is_supported_by.items()}
+
+        dump = json.dumps(isb_list)
         star_b = 0
         for b_id in range(len(bricks)):
             q = deque()
             q.append(b_id)
-            support = copy.deepcopy(is_supported_by)
+            support_list = json.loads(dump)
+            support = {k: set(v) for k, v in support_list.items()}
             visited = set()
             while q:
                 new_b_id = q.pop()
