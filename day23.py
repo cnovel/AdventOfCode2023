@@ -9,6 +9,7 @@ NORTH = (0, -1)
 
 directions = [WEST, SOUTH, EAST, NORTH]
 
+
 class Day23(Day):
     def _name(self):
         return "--- Day 23: A Long Walk ---"
@@ -53,6 +54,36 @@ class Day23(Day):
             cur_pos = nps[0]
 
 
+    def _get_next_pos_all(self, cur_pos):
+        r = []
+        for d in directions:
+            np = (cur_pos[0] + d[0], cur_pos[1] + d[1])
+            if not (0 <= np[0] < self.w and 0 <= np[1] < self.h):
+                continue
+            c = self.lines[np[1]][np[0]]
+            if c == "#":
+                continue
+            r.append(np)
+        return r
+
+    def _collapse(self):
+        while True:
+            for n, e in self.edges.items():
+                if len(e) == 2:
+                    a, b = e
+                    pos_a = a[0]
+                    cost_a = a[1]
+                    pos_b = b[0]
+                    cost_b = b[1]
+                    self.edges[pos_a].remove((n, cost_a))
+                    self.edges[pos_b].remove((n, cost_b))
+                    self.edges[pos_a].add((pos_b, cost_a + cost_b))
+                    self.edges[pos_b].add((pos_a, cost_a + cost_b))
+                    del self.edges[n]
+                    break
+            else:
+                break
+
     def _process(self):
         start = None
         end = None
@@ -65,6 +96,36 @@ class Day23(Day):
                 end = (i, self.h-1)
         self.prnt_a(self._get_max_path(0, start, None, end))
 
+        # Create a graph for next
+        self.edges = {}
+        for j in range(self.h):
+            for i in range(self.w):
+                if self.lines[j][i] == "#":
+                    continue
+                nps = self._get_next_pos_all((i,j))
+                for np in nps:
+                    self.edges.setdefault((i, j), set()).add((np, 1))
+                    self.edges.setdefault(np, set()).add(((i,j), 1))
+        self._collapse()
+
+        q = [(start, 0)]
+        visited = set()
+        best = 0
+        while q:
+            pos, cost = q.pop()
+            if cost == -1:
+                visited.remove(pos)
+                continue
+            if pos == end:
+                best= max(best, cost)
+                continue
+            if pos in visited:
+                continue
+            visited.add(pos)
+            q.append((pos, -1))
+            for np, l in self.edges[pos]:
+                q.append((np, cost + l))
+        self.prnt_b(best)
 
 
 if __name__ == "__main__":
