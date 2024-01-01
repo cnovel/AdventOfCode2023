@@ -10,7 +10,6 @@ class Day25(Day):
     def _file(self):
         return "data/input_25.txt"
 
-
     def _process(self):
         rg = re.compile("(\w+)")
         edges = []
