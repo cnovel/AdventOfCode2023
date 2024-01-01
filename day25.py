@@ -28,6 +28,7 @@ class Day25(Day):
         while sum(map(count, s)) != 3:
             s.remove(max(s, key=count))
         self.prnt_a(len(s) * len(set(g) - s))
+        self.prnt_b("Congrats on completing the AoC 2023!")
 
 
 if __name__ == "__main__":
